@@ -9,7 +9,7 @@ RM			=	rm -rf
 
 
 all: $(TEST_EXE)
-	gcovr --branches
+	gcovr 
 
 $(TEST_EXE):
 	$(CC) $(SRC) $(TESTS_SRC) $(CRITERION) -o $(TEST_EXE)
