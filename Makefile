@@ -13,6 +13,9 @@ $(EXE): $(DIR) $(OBJ)
 	$(CC) $(CFLAGS) $(OBJ) -I $(INCLUDES) -o $(EXE)
 	@mv $(OBJ) $(DIR)
 
+debug:
+	$(CC) $(CFLAGS) $(SRC) -I $(INCLUDES) -g -g3 -ggdb -o $(EXE)
+
 $(DIR):
 	@mkdir -p $(DIR)
 
@@ -25,3 +28,7 @@ fclean: clean
 	$(RM) $(EXE)
 
 re: fclean all
+
+tests_run:
+	make -C tests fclean
+	make -C tests

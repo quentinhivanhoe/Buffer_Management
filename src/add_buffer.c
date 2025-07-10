@@ -45,7 +45,7 @@ bool add_buff_node(circle_buff_t **list, const char *buf, const size_t size)
         write(STDERR_FILENO, "calloc failed\n", 15);
         exit(EXIT_FAILURE);
     }
-    memcpy((*list)->buffer, buf, size);
+    memcpy(node->buffer, buf, size);
     node->prev = head;
     node->next = (*list);
     if (!(*list)) {
