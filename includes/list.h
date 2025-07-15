@@ -12,16 +12,16 @@
 #include <unistd.h>
 #include <stdbool.h>
 
-typedef  struct circular_buffer_s circle_buff_t;
+typedef  struct circular_list_s circle_list_t;
 
 #define BUFFER_SIZE 128
 
-struct circular_buffer_s
+struct circular_list_s
 {
     bool head;
-    circle_buff_t *prev;
-    circle_buff_t *next;
+    circle_list_t *prev;
+    circle_list_t *next;
     char buffer[BUFFER_SIZE + 1];
 };
 
-bool add_buff_node(circle_buff_t **list, const char *buf, const size_t size);
+bool add_buff_node(circle_list_t **list, const char *buf, const size_t size);

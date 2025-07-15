@@ -11,22 +11,6 @@
 #include "../includes/getter.h"
 
 /**
- * @brief check the validity of the list
- *
- * @param list the list to check
- * @return true if everything is okay with the list
- * @return false if something is wrong with the list
- */
-static bool check_list(circle_buff_t **list)
-{
-    if (!list)
-        return false;
-    if (!(*list))
-        return false;
-    return true;
-}
-
-/**
  * @brief check the validity of parameters
  *
  * @param dest the destination of the node buffer
@@ -41,14 +25,26 @@ static bool check_list(circle_buff_t **list)
 //     return true;
 // }
 
-circle_buff_t *get_head(circle_buff_t **list)
+circle_list_t *get_head(circle_list_t *list)
 {
-    circle_buff_t *parser = NULL;
+    circle_list_t *parser = NULL;
 
-    if (!check_list(list))
+    if (!list)
         return NULL;
-    parser = (*list);
+    parser = list;
     for (; !parser->head; parser = parser->next);
+    return parser;
+}
+
+circle_list_t *get_node_by_index(circle_list_t *list, size_t index)
+{
+    circle_list_t *parser = NULL;
+
+    if (!list)
+        return NULL;
+    parser = get_head(list);
+    for (size_t i = 0; i < index; i++)
+        parser = parser->prev;
     return parser;
 }
 
@@ -59,7 +55,7 @@ circle_buff_t *get_head(circle_buff_t **list)
  * @param dest store the buffer the content of the buffer in dest
  * @return char* return a pointer to the buffer
  */
-char *get_buffer(circle_buff_t **list, char *dest, char *tok)
+char *get_buffer(circle_list_t **list, char *dest, char *tok)
 {
     (void)list;
     (void)tok;

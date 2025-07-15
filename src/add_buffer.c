@@ -8,11 +8,11 @@
  * @copyright Copyright (c) 2025
  *
  */
-#include "../includes/buffer.h"
+#include "../includes/list.h"
 #include <stdlib.h>
 #include <string.h>
 
-static bool invalid_add(circle_buff_t **lst, const char *buf, const size_t size)
+static bool invalid_add(circle_list_t **lst, const char *buf, const size_t size)
 {
     if (!buf)
     {
@@ -32,14 +32,14 @@ static bool invalid_add(circle_buff_t **lst, const char *buf, const size_t size)
     return true;
 }
 
-bool add_buff_node(circle_buff_t **list, const char *buf, const size_t size)
+bool add_buff_node(circle_list_t **list, const char *buf, const size_t size)
 {
-    circle_buff_t *node = NULL;
-    static circle_buff_t *head = NULL;
+    circle_list_t *node = NULL;
+    static circle_list_t *head = NULL;
 
     if (!invalid_add(list, buf, size))
         return false;
-    node = calloc(1, sizeof(circle_buff_t));
+    node = calloc(1, sizeof(circle_list_t));
     if (!node)
     {
         write(STDERR_FILENO, "calloc failed\n", 15);
